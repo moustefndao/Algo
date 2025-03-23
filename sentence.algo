@@ -1,0 +1,53 @@
+ALGORITHM sentences
+VAR
+    long, mot, voy: INTEGER;
+    sente: STRING;
+    m: CHAR;
+
+BEGIN
+    // Initialisation des variables
+    mot := 0;
+    voy := 0;
+    long := 0;
+    sente := "";
+
+    // Lecture des caractères jusqu'à ce que le dernier soit un point
+    WHILE TRUE DO
+        Write("Entrez un caractère de la phrase (ou '.' pour terminer): ");
+        Read(m);
+        
+        // Vérification du caractère de fin
+        IF (m = '.') THEN
+            BREAK;  // Sortir de la boucle si c'est un point
+        END_IF
+        
+        sente := sente + m;
+        long := long + 1;
+        
+        // Comptage des mots : incrémenter mot à chaque espace
+        IF (m = ' ') THEN
+            mot := mot + 1;
+        END_IF
+    END_WHILE
+
+    // Compter les voyelles dans la phrase
+    FOR i FROM 0 TO long - 1 DO
+        IF (sente[i] = 'a' OR sente[i] = 'e' OR sente[i] = 'i' OR 
+            sente[i] = 'o' OR sente[i] = 'u' OR sente[i] = 'y' OR
+            sente[i] = 'A' OR sente[i] = 'E' OR sente[i] = 'I' OR
+            sente[i] = 'O' OR sente[i] = 'U' OR sente[i] = 'Y') THEN
+            voy := voy + 1;
+        END_IF
+    END_FOR
+
+    // Compter le dernier mot
+    IF long > 0 THEN
+        mot := mot + 1;  // Ajouter le dernier mot
+    END_IF
+
+    // Affichage des résultats
+    Write("La longueur de la phrase est : %d", long);
+    Write("Le nombre de mots est : %d", mot);
+    Write("Le nombre de voyelles est : %d", voy);
+END
+
