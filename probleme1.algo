@@ -1,0 +1,42 @@
+FUNCTION EXISTS(element: INTEGER, ensemble: ARRAY OF INTEGER) : BOOLEAN
+    FOR k FROM 0 TO LENGTH(ensemble) - 1 DO
+        IF ensemble[k] = element THEN
+            RETURN TRUE;
+        END_IF
+    END_FOR
+    RETURN FALSE;
+END FUNCTION
+
+ALGORITHM SumDistinctElements
+VAR
+    ensemble1: ARRAY OF INTEGER;
+    ensemble2: ARRAY OF INTEGER;
+    somme: INTEGER;
+    i, j: INTEGER;
+    
+BEGIN
+    // Initialiser les ensembles
+    ensemble1 := [3, 1, 7, 9];
+    ensemble2 := [2, 4, 1, 9, 3];
+    somme := 0;
+
+    // Étape 2 : Parcourir le premier ensemble
+    FOR i FROM 0 TO LENGTH(ensemble1) - 1 DO
+        // Vérifier si l'élément est dans le deuxième ensemble
+        IF NOT EXISTS(ensemble1[i], ensemble2) THEN
+            somme := somme + ensemble1[i];
+        END_IF
+    END_FOR
+
+    // Étape 3 : Parcourir le deuxième ensemble
+    FOR j FROM 0 TO LENGTH(ensemble2) - 1 DO
+        // Vérifier si l'élément est dans le premier ensemble
+        IF NOT EXISTS(ensemble2[j], ensemble1) THEN
+            somme := somme + ensemble2[j];
+        END_IF
+    END_FOR
+
+    // Affichage de la somme des éléments distincts
+    Write("La somme des éléments distincts est : ", somme);
+END
+

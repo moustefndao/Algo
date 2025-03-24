@@ -1,0 +1,32 @@
+ALGORITHM DotProductProcedure
+VAR
+    v1: ARRAY_OF FLOAT;
+    v2: ARRAY_OF FLOAT;
+    ps: FLOAT;  //Produit scalaire
+    n, i, j: INTEGER;
+
+PROCEDURE dot_product(v1: ARRAY_OF FLOAT, v2: ARRAY_OF FLOAT, LENGTH: INTEGER, ps: FLOAT)
+BEGIN
+    ps := 0;
+    FOR i FROM 0 TO LENGTH - 1 DO
+        ps := ps + (v1[i] * v2[i]);  // Calcul du produit scalaire
+    END_FOR
+END PROCEDURE
+
+BEGIN
+    n := 2;
+    v1 := [1.0, 2.0];  // vecteur 1
+    v2 := [2.0, -0.5]; // vecteur 2
+
+    // Boucle pour n paires de vecteurs
+    FOR j FROM 0 TO n - 1 DO
+        // Appel de la procédure pour calculer le produit scalaire
+        dot_product(v1, v2, LENGTH(v1), ps);
+        
+        IF ps = 0 THEN
+            Write("Les vecteurs v1 et v2 sont orthogonaux.");
+        ELSE
+            Write("Les vecteurs v1 et v2 ne sont pas orthogonaux.");
+        END_IF
+    END_FOR
+END
